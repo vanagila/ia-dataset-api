@@ -12,6 +12,7 @@ model Usuario {
   nome     String   @db.VarChar(100)
   email    String   @unique
   senha_hash String
+  auth_token String? @db.Text
   datasets Dataset[]
   queries  Query[]
 

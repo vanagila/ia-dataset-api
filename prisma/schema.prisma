@@ -9,28 +9,35 @@ datasource db {
 
 model Usuario {
   id       String   @id @default(uuid()) @db.Uuid
-  nome     String   @unique
+  nome     String   @db.VarChar(100)
   email    String   @unique
   senha_hash String
+  auth_token String? @db.Text
   datasets Dataset[]
   queries  Query[]
+
+  @@map("usuarios")
 }
 
 model Dataset {
   id          String   @id @default(uuid()) @db.Uuid
-  nome        String   @unique
+  nome        String   @db.VarChar(100)
   criado_em   DateTime @default(now())
   usuario_id  String   @db.Uuid
   usuario     Usuario     @relation(fields: [usuario_id], references: [id])
-  records     Records[]
+  records     Record[]
+
+  @@map("datasets")
 }
 
-model Records {
+model Record {
   id          String   @id @default(uuid()) @db.Uuid
   dataset_id  String   @db.Uuid
   dados_json Json
   criado_em  DateTime @default(now())
   dataset     Dataset  @relation(fields: [dataset_id], references: [id])
+
+  @@map("records")
 }
 
 model Query {
@@ -40,4 +47,6 @@ model Query {
   criado_em   DateTime @default(now())
   usuario_id  String   @db.Uuid
   usuario     Usuario     @relation(fields: [usuario_id], references: [id])
+
+  @@map("queries")
 }

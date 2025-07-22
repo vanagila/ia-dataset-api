@@ -2,6 +2,7 @@ import express from "express";
 import cors from "cors";
 import { envs } from "./envs/index.js";
 import { authRoutes } from "./routes/auth.routes.js";
+import { datasetRoutes } from "./routes/dataset.routes.js";
 
 const app = express();
 
@@ -10,6 +11,7 @@ app.use(express.urlencoded({extended: false}));
 app.use(cors());
 
 app.use("/auth", authRoutes());
+app.use("/datasets", datasetRoutes());
 
 app.listen(envs.PORT, () => {
     console.log(`Servidor rodando na porta ${envs.PORT}`)

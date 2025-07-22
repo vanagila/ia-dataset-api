@@ -101,5 +101,3 @@ Você pode testar todos os endpoints diretamente pela interface Swagger em `/api
 - O JWT deve ser enviado no header `Authorization: Bearer <token>` para rotas protegidas.
 
 ---
-
-## Licença

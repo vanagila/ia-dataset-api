@@ -1,6 +1,5 @@
 import { createJwtAdapter } from "../adapters/jwt.adapter.js";
 import { envs } from "../envs/index.js";
-import { prisma } from "../database/prisma.connection.js";
 import { errorResponse } from "../utils/response.js";
 
 export const authenticate = async (req, res, next) => {
